@@ -6,11 +6,11 @@ package br.com.locadorafilmes.models;
 
 public class Exemplar
 {
-    private int id;
+    private long id;
     private String situacao;
     private Titulo titulo;
 
-    public Exemplar(int id, String situacao, Titulo titulo)
+    public Exemplar(long id, String situacao, Titulo titulo)
     {
         this.id = id;
         this.situacao = situacao;
@@ -22,11 +22,11 @@ public class Exemplar
         this(-1, "", new Titulo());
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

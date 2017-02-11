@@ -1,7 +1,9 @@
 package br.com.locadorafilmes.activitys;
 
+import android.database.SQLException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -42,13 +44,12 @@ public class CriarContaActivity extends AppCompatActivity
 
     public void criarConta_onClick(View view)
     {
-        if(!edtNome.getText().equals("")
-                && edtLogin.getText().equals("")
-                && edtSenha.getText().equals("")
-                && edtConfirmaSenha.getText().equals(""))
+        if(!edtNome.getText().toString().equals("")
+                && !edtLogin.getText().toString().equals("")
+                && !edtSenha.getText().toString().equals("")
+                && !edtConfirmaSenha.getText().toString().equals(""))
         {
-            if(edtSenha.getText().equals(edtConfirmaSenha.getText()))
-            {
+            if(edtSenha.getText().toString().equals(edtConfirmaSenha.getText().toString())) {
                 Funcionario funcionario = new Funcionario(
                         edtNome.getText().toString(),
                         edtLogin.getText().toString(),
@@ -56,9 +57,18 @@ public class CriarContaActivity extends AppCompatActivity
                 );
 
                 FuncionarioDAO funcionarioDAO = new FuncionarioDAO(getApplicationContext());
-                funcionarioDAO.inserirFuncionario(funcionario);
 
-                Toast.makeText(getApplicationContext(), "Conta criada com sucesso", Toast.LENGTH_SHORT).show();
+                try
+                {
+                    funcionarioDAO.inserirFuncionario(funcionario);
+                    Toast.makeText(getApplicationContext(), "Conta criada com sucesso", Toast.LENGTH_SHORT).show();
+                }
+                catch (SQLException e)
+                {
+                    Log.e("CriarContaActivity", e.getMessage());
+                    Toast.makeText(getApplicationContext(), "Não foi possível criar conta", Toast.LENGTH_SHORT).show();
+                }
+
                 finish();
             }
         }

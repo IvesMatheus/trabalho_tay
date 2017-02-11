@@ -1,10 +1,8 @@
 package br.com.locadorafilmes.models;
 
-/**
- * Created by ives on 04/02/17.
- */
+import java.io.Serializable;
 
-public class Cliente
+public class Cliente implements Serializable
 {
     private int id;
     private String nome;
@@ -17,6 +15,11 @@ public class Cliente
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
+    }
+
+    public Cliente(String nome, String endereco, String telefone)
+    {
+        this(0, nome, endereco, telefone);
     }
 
     public Cliente()

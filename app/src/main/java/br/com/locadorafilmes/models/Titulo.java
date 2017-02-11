@@ -1,6 +1,8 @@
 package br.com.locadorafilmes.models;
 
-public class Titulo
+import java.io.Serializable;
+
+public class Titulo implements Serializable
 {
     private String nomeTitulo;
     private String isbn;
@@ -8,9 +10,9 @@ public class Titulo
     private int exemplares;
     private String descricao;
     private String tipo;
-    private int maxloc;
+    private String imagem;
 
-    public Titulo(String nomeTitulo, String isbn, int ano, int exemplares, String descricao, String tipo, int maxloc)
+    public Titulo(String nomeTitulo, String isbn, int ano, int exemplares, String descricao, String tipo, String imagem)
     {
         this.ano = ano;
         this.descricao = descricao;
@@ -18,13 +20,13 @@ public class Titulo
         this.isbn = isbn;
         this.descricao = descricao;
         this.tipo = tipo;
-        this.maxloc = maxloc;
         this.nomeTitulo = nomeTitulo;
+        this.imagem = imagem;
     }
 
     public Titulo()
     {
-        this("", "", 0, 0, "", "", 0);
+        this("", "", 0, 0, "", "", "");
     }
 
     public String getNomeTitulo() {
@@ -75,11 +77,19 @@ public class Titulo
         this.tipo = tipo;
     }
 
-    public int getMaxloc() {
-        return maxloc;
+    public String getImagem() {
+        return imagem;
     }
 
-    public void setMaxloc(int maxloc) {
-        this.maxloc = maxloc;
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this.isbn.equals(((Titulo)obj).getIsbn()))
+            return true;
+        else
+            return false;
     }
 }

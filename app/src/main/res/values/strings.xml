@@ -15,4 +15,10 @@
     <string name="item_menu_clientes">Clientes</string>
     <string name="item_menu_titulos">Titulos</string>
     <string name="item_menu_conta">Minha Conta</string>
+    <string name="edtHintISBN">ISBN</string>
+    <string name="edtHintNomeTitulo">Título</string>
+    <string name="edtHintDescricao">Descricao</string>
+    <string name="edtHintAno">Ano</string>
+    <string name="edtHintExemplares">Quantidade de Exemplares</string>
+    <string name="edtHintTipo">Tipo</string>
 </resources>

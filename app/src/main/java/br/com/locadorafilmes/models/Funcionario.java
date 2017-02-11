@@ -1,10 +1,12 @@
 package br.com.locadorafilmes.models;
 
+import java.io.Serializable;
+
 /**
  * Created by ives on 04/02/17.
  */
 
-public class Funcionario
+public class Funcionario implements Serializable
 {
     private int id;
     private String nome;

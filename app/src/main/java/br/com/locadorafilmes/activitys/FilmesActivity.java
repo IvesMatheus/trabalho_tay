@@ -4,22 +4,24 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.locadorafilmes.R;
 import br.com.locadorafilmes.TaynahLOCUtil;
 import br.com.locadorafilmes.adapters.TituloAdapter;
+import br.com.locadorafilmes.dao.TituloDAO;
 import br.com.locadorafilmes.models.Titulo;
 
 public class FilmesActivity extends AppCompatActivity
 {
 
-    ListView lstTitulo;
+    private ListView lstTitulo;
+    private List<Titulo> preLocados = new ArrayList<Titulo>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,15 +37,32 @@ public class FilmesActivity extends AppCompatActivity
         TaynahLOCUtil.ocultarTeclado(this);
         lstTitulo = (ListView)findViewById(R.id.lstTitulo);
         List<Titulo> titulos = new ArrayList<>();
-        titulos.add(new Titulo("Star Wars Episódio VI", "", 2015, 4, "Este é o sétimo capítulo da saga cinematográfica e é uma sequência da trilogia original (Uma nova esperança, O Império contra-ataca e O retorno de Jedi). A segunda trilogia foi uma prequela, mostrando a transformação de Anakin Skywalker no vilão Darth Vader (A ameaça fantasma, O ataque dos clones e A vingança dos Sith), mas de maneira geral recebeu muitas críticas.", "", 4));
-        titulos.add(new Titulo("Star Wars Episódio VI", "", 2015, 4, "Este é o sétimo capítulo da saga cinematográfica e é uma sequência da trilogia original (Uma nova esperança, O Império contra-ataca e O retorno de Jedi). A segunda trilogia foi uma prequela, mostrando a transformação de Anakin Skywalker no vilão Darth Vader (A ameaça fantasma, O ataque dos clones e A vingança dos Sith), mas de maneira geral recebeu muitas críticas.", "", 4));
-        TituloAdapter tituloAdapter = new TituloAdapter(getApplicationContext(), titulos);
+
+        TituloDAO tituloDAO = new TituloDAO(getApplicationContext());
+        titulos = tituloDAO.listTodosTitulos();
+
+        TituloAdapter tituloAdapter = new TituloAdapter(getApplicationContext(), titulos, new TituloAdapter.TituloAdapterListener() {
+            @Override
+            public void marcar(Titulo titulo) {
+                if(!preLocados.contains(titulo))
+                    preLocados.add(titulo);
+            }
+
+            @Override
+            public void desmarcar(Titulo titulo) {
+                if(preLocados.contains(titulo))
+                    preLocados.remove(titulo);
+            }
+        });
         lstTitulo.setAdapter(tituloAdapter);
     }
 
     public void confirmar_onClick(View view)
     {
         Intent intent = new Intent(getApplicationContext(), ConfirmacaoActivity.class);
+        Bundle extras = new Bundle();
+        extras.putSerializable("pre_locados", (Serializable) preLocados);
+        intent.putExtras(extras);
         startActivity(intent);
     }
 
@@ -55,7 +74,10 @@ public class FilmesActivity extends AppCompatActivity
     public void visualizarPreLocados_onClick(View view)
     {
         Intent intent = new Intent(getApplicationContext(), PreLocadosActivity.class);
-        startActivity(intent);
+        Bundle extras = new Bundle();
+        extras.putSerializable("pre_locados", (Serializable) preLocados);
+        intent.putExtras(extras);
+        startActivityForResult(intent, 0);
     }
 
     @Override

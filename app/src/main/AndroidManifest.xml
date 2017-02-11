@@ -8,8 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activitys.LoginActivity">
+        <activity android:name=".activitys.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +22,8 @@
             android:noHistory="true" />
         <activity android:name=".activitys.ConfirmacaoActivity" />
         <activity android:name=".activitys.CriarContaActivity" />
-        <activity android:name=".activitys.AddClienteActivity"></activity>
+        <activity android:name=".activitys.AddClienteActivity" />
+        <activity android:name=".activitys.AddTituloActivity"></activity>
     </application>
 
 </manifest>

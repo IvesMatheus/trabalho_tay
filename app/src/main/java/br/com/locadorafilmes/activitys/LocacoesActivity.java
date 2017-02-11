@@ -3,8 +3,9 @@ package br.com.locadorafilmes.activitys;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,17 +23,31 @@ import br.com.locadorafilmes.models.Funcionario;
 import br.com.locadorafilmes.models.Locacao;
 
 public class LocacoesActivity extends AppCompatActivity {
-    ListView lstLocacoes;
+    private ListView lstLocacoes;
+    private Funcionario funcionario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locacoes);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null)
+        {
+            this.funcionario = (Funcionario)extras.get("funcionario");
+        }
+        else
+        {
+            Log.e("LocacoesActivity", " Não passou funcionário logado");
+        }
+
         setLayout();
     }
 
     private void setLayout()
     {
+        setTitle(getString(R.string.app_name) + " - " + funcionario.getLogin());
+
         List<Locacao> list = new ArrayList<Locacao>();
         list.add(new Locacao(1, new Funcionario(1, "Joao Silva", "", ""), new Cliente(1, "Roberta Kathleen", "", ""), "20/02/2017", "18/02/2017", 8.00f));
         LocacaoAdapter locacaoAdapter = new LocacaoAdapter(getApplicationContext(), list);
@@ -50,6 +65,12 @@ public class LocacoesActivity extends AppCompatActivity {
     public void addCliente_onClick(View view)
     {
         Intent intent = new Intent(getApplicationContext(), AddClienteActivity.class);
+        startActivity(intent);
+    }
+
+    public void addTitulo_onClick(View view)
+    {
+        Intent intent = new Intent(getApplicationContext(), AddTituloActivity.class);
         startActivity(intent);
     }
 

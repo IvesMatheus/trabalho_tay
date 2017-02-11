@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import br.com.locadorafilmes.DB.DBHelper;
 import br.com.locadorafilmes.models.Funcionario;
@@ -35,16 +34,24 @@ public class FuncionarioDAO
         db.endTransaction();
     }
 
-    public boolean verificaLogin(Funcionario funcionario) throws SQLException
-    {
+    public Funcionario verificaLogin(Funcionario funcionario) throws SQLException {
         String sql = "SELECT * FROM " + DBHelper.Funcionario.TABLE_FUNCIONARIO +
-                " WHERE " + DBHelper.Funcionario.COLUMN_LOGIN + "= '" + funcionario.getLogin() + "' " +
-                " AND " + DBHelper.Funcionario.COLUMN_SENHA + "= '" + funcionario.getSenha() + "'";
+                " WHERE " + DBHelper.Funcionario.COLUMN_LOGIN + " = '" + funcionario.getLogin() + "' " +
+                " AND " + DBHelper.Funcionario.COLUMN_SENHA + " = '" + funcionario.getSenha() + "'";
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
 
-        return cursor.moveToFirst();
+        if (cursor.moveToFirst())
+        {
+            funcionario.setId(cursor.getInt(cursor.getColumnIndex(DBHelper.Funcionario.COLUMN_ID)));
+            funcionario.setNome(cursor.getString(cursor.getColumnIndex(DBHelper.Funcionario.COLUMN_NOME)));
+            funcionario.setLogin(cursor.getString(cursor.getColumnIndex(DBHelper.Funcionario.COLUMN_LOGIN)));
+            funcionario.setSenha(cursor.getString(cursor.getColumnIndex(DBHelper.Funcionario.COLUMN_SENHA)));
 
+            return funcionario;
+        }
+        else
+            return null;
     }
 }
