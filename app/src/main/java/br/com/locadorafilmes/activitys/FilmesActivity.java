@@ -15,6 +15,7 @@ import br.com.locadorafilmes.R;
 import br.com.locadorafilmes.TaynahLOCUtil;
 import br.com.locadorafilmes.adapters.TituloAdapter;
 import br.com.locadorafilmes.dao.TituloDAO;
+import br.com.locadorafilmes.models.Funcionario;
 import br.com.locadorafilmes.models.Titulo;
 
 public class FilmesActivity extends AppCompatActivity
@@ -22,12 +23,16 @@ public class FilmesActivity extends AppCompatActivity
 
     private ListView lstTitulo;
     private List<Titulo> preLocados = new ArrayList<Titulo>();
+    private Funcionario funcionario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filmes);
+
+        Bundle extras = getIntent().getExtras();
+        funcionario = (Funcionario)extras.get("funcionario");
 
         setLayout();
     }
@@ -76,6 +81,7 @@ public class FilmesActivity extends AppCompatActivity
         Intent intent = new Intent(getApplicationContext(), PreLocadosActivity.class);
         Bundle extras = new Bundle();
         extras.putSerializable("pre_locados", (Serializable) preLocados);
+        extras.putSerializable("funcionario", funcionario);
         intent.putExtras(extras);
         startActivityForResult(intent, 0);
     }

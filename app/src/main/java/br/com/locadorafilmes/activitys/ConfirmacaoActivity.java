@@ -31,6 +31,7 @@ public class ConfirmacaoActivity extends AppCompatActivity {
     private TextView txtFuncionario;
     private TextView txtDataLocacao;
     private TextView txtDataDevolucao;
+    private TextView txtValorTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,15 +82,19 @@ public class ConfirmacaoActivity extends AppCompatActivity {
         });
 
         long date = System.currentTimeMillis();
+        long date2 = System.currentTimeMillis() + 172800000;
         SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
         String dateString = sdf.format(date);
+        String dataDevolucao = sdf.format(date2);
 
         txtFuncionario = (TextView)findViewById(R.id.txtFuncionario);
         txtFuncionario.setText(funcionario.getNome());
         txtDataDevolucao = (TextView)findViewById(R.id.txtDataDevolucao);
-        //txtDataDevolucao
+        txtDataDevolucao.setText(dataDevolucao);
         txtDataLocacao = (TextView)findViewById(R.id.txtDataLocacao);
         txtDataLocacao.setText(dateString);
+        txtValorTotal = (TextView)findViewById(R.id.txtValorTotal);
+        txtValorTotal.setText("R$ " + 4 * preLocados.size() + ",00");
     }
 
     public void confirmLocacao_onClick(View view)

@@ -59,6 +59,9 @@ public class LocacoesActivity extends AppCompatActivity {
     public void novaLocacao_onClick(View view)
     {
         Intent intent = new Intent(getApplicationContext(), FilmesActivity.class);
+        Bundle extras = new Bundle();
+        extras.putSerializable("funcionario", funcionario);
+        intent.putExtras(extras);
         startActivity(intent);
     }
 
