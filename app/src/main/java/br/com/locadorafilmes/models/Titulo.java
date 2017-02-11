@@ -1,9 +1,5 @@
 package br.com.locadorafilmes.models;
 
-/**
- * Created by ives on 04/02/17.
- */
-
 public class Titulo
 {
     private String nomeTitulo;
@@ -23,6 +19,7 @@ public class Titulo
         this.descricao = descricao;
         this.tipo = tipo;
         this.maxloc = maxloc;
+        this.nomeTitulo = nomeTitulo;
     }
 
     public Titulo()

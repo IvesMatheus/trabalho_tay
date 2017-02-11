@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pre_locados"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.locadorafilmes.activitys.PreLocadosActivity">
+
+    <RelativeLayout
+        android:id="@+id/rltBarraPrinciapal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        >
+
+        <ImageView
+            android:id="@+id/imbLimparLista"
+            android:src="@drawable/limpar_lista"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/imbConfirmarLocacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/imbLimparLista"
+            android:src="@drawable/confirmar"
+            android:onClick="confirmarLocacao_onClick"/>
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lstPreLocacoes"
+        android:layout_above="@id/rltBarraPrinciapal"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</RelativeLayout>

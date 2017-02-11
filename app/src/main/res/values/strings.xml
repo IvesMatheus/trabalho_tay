@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Login</string>
+    <string name="activity_login">Login</string>
+    <string name="app_name">Taynah LOC</string>
+    <string name="edtHintLogin">Login</string>
+    <string name="edtHintSenha">Senha</string>
+    <string name="btnLogin">ENTRAR</string>
+    <string name="btnCriarConta">CRIAR CONTA</string>
+    <string name="edtHintNomeFuncionario">Nome do Funcionário</string>
+    <string name="edtHintConfirmaSenha">Confirmar Senha</string>
+    <string name="btnSalvar">SALVAR</string>
+    <string name="edtHintTelefone">Telefone</string>
+    <string name="edtHintEndereco">Endereço</string>
+    <string name="edtHintNomeCliente">Cliente</string>
+    <string name="btnCancelar">CANCELAR</string>
+    <string name="item_menu_clientes">Clientes</string>
+    <string name="item_menu_titulos">Titulos</string>
+    <string name="item_menu_conta">Minha Conta</string>
 </resources>

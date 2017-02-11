@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imgTitulo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/movie"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/txtNomeTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@id/imgTitulo"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="Teste"
+        />
+
+    <TextView
+        android:id="@+id/txtDescricao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="5"
+        android:textSize="16sp"
+        android:textColor="@color/secondary_text"
+        android:text="Teste"
+        android:layout_below="@id/txtNomeTitulo"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/txtDescricao"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/imgDesMarcar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/desmarcar"
+            android:background="@drawable/borda_botao_filme"/>
+
+        <ImageView
+            android:id="@+id/imgMarcar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/marcar"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/borda_botao_filme"/>
+
+    </LinearLayout>
+    
+</RelativeLayout>
