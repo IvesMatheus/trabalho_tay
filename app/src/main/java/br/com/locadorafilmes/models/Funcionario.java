@@ -19,6 +19,11 @@ public class Funcionario
         this.login = login;
     }
 
+    public Funcionario(String nome, String login, String senha)
+    {
+        this(0, nome, login, senha);
+    }
+
     public Funcionario()
     {
         this(-1, "", "", "");

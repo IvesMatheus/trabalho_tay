@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuClientes"
+        android:orderInCategory="1"
+        android:title="@string/item_menu_clientes"/>
+
+    <item
+        android:id="@+id/menuTitulos"
+        android:orderInCategory="1"
+        android:title="@string/item_menu_titulos"/>
+
+    <item
+        android:id="@+id/menuMinhaConta"
+        android:orderInCategory="1"
+        android:title="@string/item_menu_conta"/>
+</menu>
